@@ -171,6 +171,9 @@ const CATS = [
   { id:"ristorante", label:"Ristorante",   icon:"🍽️", color:"#FFEAA7" },
   { id:"salute",     label:"Salute",       icon:"💊", color:"#DDA0DD" },
   { id:"abbonamenti",label:"Abbonamenti",  icon:"📱", color:"#98D8C8" },
+  { id:"palestra",   label:"Palestra",     icon:"🏋️", color:"#FF8FAB" },
+  { id:"sim",        label:"SIM",          icon:"📶", color:"#A8DADC" },
+  { id:"apple",      label:"Apple",        icon:"🍎", color:"#C8B6FF" },
   { id:"altro",      label:"Altro",        icon:"📦", color:"#B8B8B8" },
 ];
 const MONTHS = ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];

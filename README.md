@@ -30,24 +30,16 @@
     overflow-x: hidden;
   }
   html { height: -webkit-fill-available; }
-
-  /* Safe area for iPhone notch */
   .safe-top { padding-top: max(18px, env(safe-area-inset-top)); }
-  .safe-bottom { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
 
-  /* Header */
   .header {
     background: rgba(13,13,20,0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     padding: 0 16px 14px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: flex-end; justify-content: space-between;
   }
   .header-title { font-size: 9px; letter-spacing: 4px; color: var(--muted); margin-bottom: 2px; }
   .header-name { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 700; color: #fff; }
@@ -56,16 +48,13 @@
   .tab-btn {
     padding: 6px 13px; border-radius: 6px; border: 1px solid;
     cursor: pointer; font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; font-family: 'DM Mono', monospace;
-    transition: all 0.2s;
+    text-transform: uppercase; font-family: 'DM Mono', monospace; transition: all 0.2s;
   }
   .tab-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
   .tab-btn.inactive { background: transparent; border-color: rgba(255,255,255,0.15); color: var(--muted); }
 
-  /* Content */
   .content { padding: 16px; }
 
-  /* Month tabs */
   .month-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
   .month-btn {
     padding: 5px 9px; border-radius: 4px; border: 1px solid;
@@ -76,7 +65,6 @@
   .month-btn.inactive { border-color: rgba(255,255,255,0.1); background: transparent; color: var(--dim); }
   .month-sub { display: block; font-size: 7px; }
 
-  /* Total card */
   .total-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 12px; padding: 13px 16px; margin-bottom: 14px;
@@ -85,25 +73,48 @@
   .total-label { font-size: 10px; color: var(--muted); letter-spacing: 2px; }
   .total-value { font-family: 'DM Sans', sans-serif; font-size: 24px; font-weight: 700; color: var(--orange); }
 
-  /* Category grid */
-  .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+  /* Category cards - full width for multi-entry */
+  .cat-grid { display: flex; flex-direction: column; gap: 9px; }
   .cat-card {
     background: var(--surface); border-radius: 11px; padding: 13px;
     border: 1px solid rgba(255,255,255,0.07); transition: border-color 0.2s;
   }
-  .cat-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+  .cat-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .cat-head-left { display: flex; align-items: center; gap: 6px; }
   .cat-icon { font-size: 17px; }
   .cat-name { font-size: 9px; color: #bbb; letter-spacing: 0.5px; }
-  .cat-input-row { display: flex; align-items: center; gap: 4px; }
-  .cat-euro { color: var(--dim); font-size: 13px; }
-  .cat-input {
-    background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.15);
-    color: var(--text); font-size: 16px; font-family: 'DM Sans', sans-serif;
-    font-weight: 600; width: 100%; outline: none; padding-bottom: 3px;
+  .cat-total { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; }
+
+  /* Entries list */
+  .entries-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  .entry-row { display: flex; align-items: center; gap: 6px; }
+  .entry-euro { color: var(--dim); font-size: 12px; flex-shrink: 0; }
+  .entry-input {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px; color: var(--text); font-size: 15px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    width: 100%; outline: none; padding: 6px 8px;
     transition: border-color 0.2s, color 0.2s;
     -webkit-appearance: none;
   }
-  .cat-input::placeholder { color: var(--dim); }
+  .entry-input::placeholder { color: var(--dim); font-weight: 400; font-size: 13px; }
+  .entry-input:focus { border-color: rgba(255,255,255,0.3); }
+  .entry-del {
+    background: transparent; border: none; color: var(--dim);
+    font-size: 16px; cursor: pointer; padding: 4px; flex-shrink: 0;
+    line-height: 1;
+  }
+  .add-btn {
+    background: transparent; border: 1px dashed rgba(255,255,255,0.15);
+    border-radius: 6px; color: var(--muted); font-size: 11px;
+    font-family: 'DM Mono', monospace; cursor: pointer;
+    padding: 5px 10px; width: 100%; text-align: center;
+    transition: all 0.15s; letter-spacing: 1px;
+  }
+  .add-btn:active { background: rgba(255,255,255,0.05); }
 
   /* Summary */
   .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-bottom: 16px; }
@@ -125,7 +136,6 @@
   .bar-lbl { font-size: 7px; color: var(--dim); }
 
   .avg-list { display: flex; flex-direction: column; gap: 11px; }
-  .avg-item {}
   .avg-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
   .avg-name { font-size: 12px; color: #ccc; }
   .avg-sub { font-size: 9px; color: var(--dim); margin-left: 5px; }
@@ -135,10 +145,8 @@
   .avg-tot { font-size: 9px; color: var(--dim); }
   .progress-bg { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; }
   .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
-
   .empty { color: var(--dim); text-align: center; padding: 20px; font-size: 12px; }
 
-  /* number input arrows hide */
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
   input[type=number] { -moz-appearance: textfield; }
@@ -178,25 +186,37 @@ const CATS = [
 ];
 const MONTHS = ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
 
-// State
 let activeMonth = new Date().getMonth();
 let currentView = "input";
 let saveTimer = null;
 
-// Load data
+// Data structure: data[month][catId] = ["12.50", "34.00", ...]
 function loadData() {
   try {
-    const raw = localStorage.getItem("spese-v1");
+    const raw = localStorage.getItem("spese-v2");
     if (raw) return JSON.parse(raw);
   } catch(e) {}
+  return makeEmpty();
+}
+
+function makeEmpty() {
   const d = {};
   for (let m = 0; m < 12; m++) {
     d[m] = {};
-    CATS.forEach(c => { d[m][c.id] = ""; });
+    CATS.forEach(c => { d[m][c.id] = [""]; });
   }
   return d;
 }
+
 let data = loadData();
+
+// Make sure new categories exist in old data
+CATS.forEach(c => {
+  for (let m = 0; m < 12; m++) {
+    if (!data[m]) data[m] = {};
+    if (!data[m][c.id]) data[m][c.id] = [""];
+  }
+});
 
 function saveData() {
   const dot = document.getElementById("saveDot");
@@ -205,7 +225,7 @@ function saveData() {
   if (saveTimer) clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
     try {
-      localStorage.setItem("spese-v1", JSON.stringify(data));
+      localStorage.setItem("spese-v2", JSON.stringify(data));
       dot.style.color = "#4ECDC4";
       dot.textContent = "✓ salvato";
       setTimeout(() => { dot.textContent = ""; }, 2000);
@@ -213,13 +233,15 @@ function saveData() {
       dot.style.color = "#FF6B35";
       dot.textContent = "⚠ errore";
     }
-  }, 700);
+  }, 600);
 }
 
-function val(m, id) { return parseFloat(data[m][id]) || 0; }
+function catTotal(m, catId) {
+  return (data[m][catId] || [""]).reduce((s, v) => s + (parseFloat(v) || 0), 0);
+}
 
 function monthTotal(m) {
-  return CATS.reduce((s, c) => s + val(m, c.id), 0);
+  return CATS.reduce((s, c) => s + catTotal(m, c.id), 0);
 }
 
 function fmt(n) {
@@ -231,7 +253,7 @@ function renderInput() {
   const el = document.getElementById("viewInput");
   const totals = Array.from({length:12}, (_, i) => monthTotal(i));
 
-  let monthBtns = MONTHS.map((m, i) => {
+  const monthBtns = MONTHS.map((m, i) => {
     const active = i === activeMonth;
     const t = totals[i];
     return `<button class="month-btn ${active?'active':'inactive'}" onclick="setMonth(${i})">
@@ -239,26 +261,36 @@ function renderInput() {
     </button>`;
   }).join('');
 
-  let catCards = CATS.map(cat => {
-    const v = val(activeMonth, cat.id);
-    const hasVal = v > 0;
+  const catCards = CATS.map(cat => {
+    const entries = data[activeMonth][cat.id] || [""];
+    const total = catTotal(activeMonth, cat.id);
+    const hasVal = total > 0;
     const borderColor = hasVal ? cat.color + "55" : "rgba(255,255,255,0.07)";
-    const inputColor = hasVal ? cat.color : "#e8e8e8";
-    const borderBottom = hasVal ? cat.color : "rgba(255,255,255,0.15)";
+
+    const entryRows = entries.map((val, idx) => `
+      <div class="entry-row" id="erow-${cat.id}-${idx}">
+        <span class="entry-euro">€</span>
+        <input class="entry-input" type="number" inputmode="decimal" placeholder="0,00"
+          value="${val}"
+          oninput="handleEntry('${cat.id}', ${idx}, this.value)"
+          style="${parseFloat(val) > 0 ? `color:${cat.color};border-color:${cat.color}44` : ''}"
+        />
+        ${entries.length > 1 ? `<button class="entry-del" onclick="removeEntry('${cat.id}', ${idx})">✕</button>` : ''}
+      </div>
+    `).join('');
+
     return `<div class="cat-card" id="card-${cat.id}" style="border-color:${borderColor}">
       <div class="cat-head">
-        <span class="cat-icon">${cat.icon}</span>
-        <span class="cat-name">${cat.label.toUpperCase()}</span>
+        <div class="cat-head-left">
+          <span class="cat-icon">${cat.icon}</span>
+          <span class="cat-name">${cat.label.toUpperCase()}</span>
+        </div>
+        <span class="cat-total" id="ctot-${cat.id}" style="color:${hasVal ? cat.color : 'var(--dim)'}">
+          ${hasVal ? '€ ' + fmt(total) : '—'}
+        </span>
       </div>
-      <div class="cat-input-row">
-        <span class="cat-euro">€</span>
-        <input class="cat-input" type="number" inputmode="decimal" placeholder="0"
-          id="inp-${cat.id}"
-          value="${data[activeMonth][cat.id]}"
-          style="color:${inputColor};border-bottom-color:${borderBottom}"
-          oninput="handleInput('${cat.id}', this.value)"
-        />
-      </div>
+      <div class="entries-list" id="elist-${cat.id}">${entryRows}</div>
+      <button class="add-btn" onclick="addEntry('${cat.id}')">+ aggiungi importo</button>
     </div>`;
   }).join('');
 
@@ -273,23 +305,80 @@ function renderInput() {
   `;
 }
 
-function handleInput(catId, rawVal) {
-  data[activeMonth][catId] = rawVal;
-  const v = parseFloat(rawVal) || 0;
-  const cat = CATS.find(c => c.id === catId);
-  const card = document.getElementById("card-" + catId);
-  const inp = document.getElementById("inp-" + catId);
-  if (v > 0) {
-    card.style.borderColor = cat.color + "55";
-    inp.style.color = cat.color;
-    inp.style.borderBottomColor = cat.color;
-  } else {
-    card.style.borderColor = "rgba(255,255,255,0.07)";
-    inp.style.color = "#e8e8e8";
-    inp.style.borderBottomColor = "rgba(255,255,255,0.15)";
-  }
+function handleEntry(catId, idx, val) {
+  data[activeMonth][catId][idx] = val;
+  updateCatDisplay(catId);
   document.getElementById("monthTotal").textContent = "€ " + fmt(monthTotal(activeMonth));
   saveData();
+}
+
+function addEntry(catId) {
+  data[activeMonth][catId].push("");
+  // Re-render just the entries list
+  const cat = CATS.find(c => c.id === catId);
+  const entries = data[activeMonth][catId];
+  const eList = document.getElementById("elist-" + catId);
+  eList.innerHTML = entries.map((val, idx) => `
+    <div class="entry-row" id="erow-${catId}-${idx}">
+      <span class="entry-euro">€</span>
+      <input class="entry-input" type="number" inputmode="decimal" placeholder="0,00"
+        value="${val}"
+        oninput="handleEntry('${catId}', ${idx}, this.value)"
+        style="${parseFloat(val) > 0 ? `color:${cat.color};border-color:${cat.color}44` : ''}"
+      />
+      ${entries.length > 1 ? `<button class="entry-del" onclick="removeEntry('${catId}', ${idx})">✕</button>` : ''}
+    </div>
+  `).join('');
+  // Focus last input
+  setTimeout(() => {
+    const inputs = eList.querySelectorAll('.entry-input');
+    if (inputs.length) inputs[inputs.length-1].focus();
+  }, 50);
+}
+
+function removeEntry(catId, idx) {
+  data[activeMonth][catId].splice(idx, 1);
+  if (data[activeMonth][catId].length === 0) data[activeMonth][catId] = [""];
+  const cat = CATS.find(c => c.id === catId);
+  const entries = data[activeMonth][catId];
+  const eList = document.getElementById("elist-" + catId);
+  eList.innerHTML = entries.map((val, i) => `
+    <div class="entry-row">
+      <span class="entry-euro">€</span>
+      <input class="entry-input" type="number" inputmode="decimal" placeholder="0,00"
+        value="${val}"
+        oninput="handleEntry('${catId}', ${i}, this.value)"
+        style="${parseFloat(val) > 0 ? `color:${cat.color};border-color:${cat.color}44` : ''}"
+      />
+      ${entries.length > 1 ? `<button class="entry-del" onclick="removeEntry('${catId}', ${i})">✕</button>` : ''}
+    </div>
+  `).join('');
+  updateCatDisplay(catId);
+  document.getElementById("monthTotal").textContent = "€ " + fmt(monthTotal(activeMonth));
+  saveData();
+}
+
+function updateCatDisplay(catId) {
+  const cat = CATS.find(c => c.id === catId);
+  const total = catTotal(activeMonth, catId);
+  const hasVal = total > 0;
+  const card = document.getElementById("card-" + catId);
+  const totEl = document.getElementById("ctot-" + catId);
+  if (card) card.style.borderColor = hasVal ? cat.color + "55" : "rgba(255,255,255,0.07)";
+  if (totEl) {
+    totEl.style.color = hasVal ? cat.color : "var(--dim)";
+    totEl.textContent = hasVal ? "€ " + fmt(total) : "—";
+  }
+  // Update input colors
+  const entries = data[activeMonth][catId];
+  const eList = document.getElementById("elist-" + catId);
+  if (eList) {
+    eList.querySelectorAll('.entry-input').forEach((inp, i) => {
+      const v = parseFloat(entries[i]) || 0;
+      inp.style.color = v > 0 ? cat.color : "";
+      inp.style.borderColor = v > 0 ? cat.color + "44" : "";
+    });
+  }
 }
 
 function setMonth(i) {
@@ -306,9 +395,8 @@ function renderSummary() {
   const totalAll = totals.reduce((a,b)=>a+b,0);
   const maxMonth = Math.max(...totals, 1);
 
-  // Category averages
   const catAvgs = CATS.map(cat => {
-    const vals = Array.from({length:12}, (_, m) => val(m, cat.id));
+    const vals = Array.from({length:12}, (_, m) => catTotal(m, cat.id));
     const nz = vals.filter(v => v > 0);
     const avg = nz.length ? nz.reduce((a,b)=>a+b,0)/nz.length : 0;
     const total = vals.reduce((a,b)=>a+b,0);
@@ -317,7 +405,6 @@ function renderSummary() {
 
   const maxAvg = Math.max(...catAvgs.map(c=>c.avg), 1);
 
-  // Bar chart
   const bars = MONTHS.map((m, i) => {
     const h = totals[i] > 0 ? (totals[i]/maxMonth)*56 + 4 : 2;
     const bg = totals[i] > 0 ? "linear-gradient(to top,#FF6B35,#F7C59F)" : "rgba(255,255,255,0.05)";
@@ -378,7 +465,6 @@ function switchView(v) {
   if (v === "summary") renderSummary();
 }
 
-// Init
 renderInput();
 </script>
 </body>
